@@ -10,7 +10,7 @@
 
 - **Automatic Rotation:** Tasks rotate every 5 seconds (Default) for easy tracking.
 
-- ![Loading Example...](https://s13.gifyu.com/images/SP9FY.gif)
+ ![Loading Example...](https://s13.gifyu.com/images/SP9FY.gif)
 
 - **Task Management:** Add, delete, and set time interval between task. Click on the completed task to delete it.
 

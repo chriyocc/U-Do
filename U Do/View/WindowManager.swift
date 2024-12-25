@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import AppKit
 
-struct WindowManager: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class WindowManager: NSObject {
+    static let shared = WindowManager()
+    
+    func setupWindow() {
+        if let window = NSApplication.shared.windows.first {
+            window.isOpaque = false
+            window.backgroundColor = .clear
+            window.hasShadow = true
+        }
     }
 }
 
-#Preview {
-    WindowManager()
-}

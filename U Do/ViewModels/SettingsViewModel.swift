@@ -7,12 +7,122 @@
 
 import SwiftUI
 
-struct SettingsViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class SettingsViewModel: ObservableObject {
+    static let shared = SettingsViewModel()
+    
+    @Published var timeSecond: Int {
+        didSet {
+            UserDefaults.standard.set(timeSecond, forKey: "timeInterval")
+            updateRotationTimer()
+            print("Time setting to: \(timeSecond)")
+            saveChanges()
+        }
+    
     }
-}
+    
+    @Published var priorityColor: String {
+        didSet {
+            UserDefaults.standard.set(priorityColor, forKey: "priorityColor")
+        }
+    }
+    
+    @Published var priorityEmoji: String {
+        didSet {
+            UserDefaults.standard.set(priorityEmoji, forKey: "priorityEmoji")
+        }
+    }
+    
+    
+    
+    
+    private var settingsWindow: NSWindow?
+    
+    @Published var temporaryTimeSecond: Double = 1.0
+    weak var timer: Timer?
+    
+    private init() {
+            // Load saved time interval or use default
+            timeSecond = UserDefaults.standard.integer(forKey: "timeInterval")
+            priorityColor = UserDefaults.standard.string(forKey: "priorityColor") ?? "Color_1"
+            priorityEmoji = UserDefaults.standard.string(forKey: "priorityEmoji") ?? "🔴"
+            if timeSecond == 0 { timeSecond = 3 }
+            updateRotationTimer()
+            
+        }
+    
+  
+    
 
-#Preview {
-    SettingsViewModel()
-}
+    func saveChanges() {
+        NotificationCenter.default.post(
+            name: NSNotification.Name("UpdateTaskRotation"),
+            object: nil
+        )
+        print("Save Changes(t): \(timeSecond)")
+        
+        NotificationCenter.default.post(
+            name: NSNotification.Name("UpdatePriorityColor"),
+            object: nil
+        )
+        print("Save Changes(c): \(priorityColor)")
+        
+        NotificationCenter.default.post(
+           name: NSNotification.Name("UpdatePriorityEmoji"),
+           object: nil
+       )
+        print("Save Changes(e): \(priorityEmoji)")
+        
+    
+    }
+    
+    func closeWindow() {
+        settingsWindow?.close()
+        NSWindow().isReleasedWhenClosed = true
+    }
+    
+    
+    
+    func showSettings() {
+        
+            NSApp.activate(ignoringOtherApps: true)
+
+            // Create and store window reference
+            let newWindow = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
+                styleMask: [.closable, .titled],
+                backing: .buffered,
+                defer: false
+            )
+            
+            newWindow.isReleasedWhenClosed = false
+            newWindow.title = "Setting"
+            newWindow.contentView = NSHostingView(rootView: SettingsView(viewModel: self))
+            newWindow.center()
+            
+            // Store the window reference
+            self.settingsWindow = newWindow
+            
+            // Show window
+            newWindow.makeKeyAndOrderFront(nil)
+        }
+    
+    private func updateRotationTimer() {
+           // Invalidate existing timer
+           timer?.invalidate()
+           
+           // Create new timer with updated interval
+           timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timeSecond), repeats: true) { _ in
+               if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+                   appDelegate.rotateTask()
+               }
+           }
+       }
+   }
+    
+    
+
+
+
+
+
+

@@ -5,17 +5,12 @@
 //  Created by yoyojun on 23/12/2024.
 //
 
+// ContentView.swift (optional, since we're using MenuView directly)
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        EmptyView()
     }
 }
 

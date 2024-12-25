@@ -11,6 +11,13 @@
 		45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72EF52D19BA3600A4DA2D /* ContentView.swift */; };
 		45B72EF82D19BA3800A4DA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B72EF72D19BA3800A4DA2D /* Assets.xcassets */; };
 		45B72EFB2D19BA3800A4DA2D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B72EFA2D19BA3800A4DA2D /* Preview Assets.xcassets */; };
+		45B72F042D19BA8600A4DA2D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F032D19BA8600A4DA2D /* MenuView.swift */; };
+		45B72F062D19C47400A4DA2D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F052D19C47400A4DA2D /* Task.swift */; };
+		45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F072D19C49100A4DA2D /* TaskViewModel.swift */; };
+		45B72F102D1A764100A4DA2D /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F0F2D1A764100A4DA2D /* WindowManager.swift */; };
+		45B72F122D1A767E00A4DA2D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F112D1A767E00A4DA2D /* CircleButton.swift */; };
+		45D6EA9F2D1AB72500FA7568 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */; };
+		45D6EAA12D1ACABD00FA7568 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +27,13 @@
 		45B72EF72D19BA3800A4DA2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45B72EFA2D19BA3800A4DA2D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45B72EFC2D19BA3800A4DA2D /* U_Do.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = U_Do.entitlements; sourceTree = "<group>"; };
+		45B72F032D19BA8600A4DA2D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		45B72F052D19C47400A4DA2D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		45B72F072D19C49100A4DA2D /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		45B72F0F2D1A764100A4DA2D /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		45B72F112D1A767E00A4DA2D /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +66,10 @@
 		45B72EF22D19BA3600A4DA2D /* U Do */ = {
 			isa = PBXGroup;
 			children = (
+				45B72F0A2D19C50A00A4DA2D /* ViewModels */,
+				45B72F092D19C4F900A4DA2D /* Models */,
+				45B72F022D19BA7700A4DA2D /* View */,
 				45B72EF32D19BA3600A4DA2D /* U_DoApp.swift */,
-				45B72EF52D19BA3600A4DA2D /* ContentView.swift */,
 				45B72EF72D19BA3800A4DA2D /* Assets.xcassets */,
 				45B72EFC2D19BA3800A4DA2D /* U_Do.entitlements */,
 				45B72EF92D19BA3800A4DA2D /* Preview Content */,
@@ -67,6 +83,35 @@
 				45B72EFA2D19BA3800A4DA2D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		45B72F022D19BA7700A4DA2D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45B72EF52D19BA3600A4DA2D /* ContentView.swift */,
+				45B72F032D19BA8600A4DA2D /* MenuView.swift */,
+				45B72F0F2D1A764100A4DA2D /* WindowManager.swift */,
+				45B72F112D1A767E00A4DA2D /* CircleButton.swift */,
+				45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45B72F092D19C4F900A4DA2D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				45B72F052D19C47400A4DA2D /* Task.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		45B72F0A2D19C50A00A4DA2D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				45B72F072D19C49100A4DA2D /* TaskViewModel.swift */,
+				45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +184,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B72F122D1A767E00A4DA2D /* CircleButton.swift in Sources */,
+				45B72F062D19C47400A4DA2D /* Task.swift in Sources */,
 				45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */,
+				45B72F042D19BA8600A4DA2D /* MenuView.swift in Sources */,
+				45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */,
 				45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */,
+				45D6EA9F2D1AB72500FA7568 /* SettingsView.swift in Sources */,
+				45B72F102D1A764100A4DA2D /* WindowManager.swift in Sources */,
+				45D6EAA12D1ACABD00FA7568 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "U Do/U_Do.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -295,6 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "U Do/U_Do.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

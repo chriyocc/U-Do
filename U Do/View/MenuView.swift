@@ -70,7 +70,6 @@ struct MenuView: View {
                             if (self.hover) {
                                 NSCursor.pointingHand.push()
                             } else {
-                                self.hover = false
                                 NSCursor.pop()
                             }
                         }

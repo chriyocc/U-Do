@@ -22,9 +22,9 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
   ![SPYW4.png](https://s13.gifyu.com/images/SPYW4.png)
 
-- **Task Management:** Add, delete, and set time interval between tasks. Click on the completed task to delete it.
+- **Task Management:** Add, delete, and set time interval between tasks. Double click on the completed task to delete it.
 
-  **任务管理：** 添加、删除任务并设置任务之间的时间间隔。点击已完成的任务即可删除。
+  **任务管理：** 添加、删除任务并设置任务之间的时间间隔。双击已完成的任务即可删除。
 
   ![SPYWg.png](https://s7.gifyu.com/images/SPYWg.png)
 

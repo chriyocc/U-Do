@@ -94,7 +94,9 @@ struct MenuView: View {
                 .onAppear {
                             WindowManager.shared.setupWindow()
                     }
+            
             }
+        
         }
     }
 

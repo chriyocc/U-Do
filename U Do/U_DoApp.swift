@@ -61,6 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered,
             defer: false
         )
+        
         window.contentView = hostingView
         window.backgroundColor = .clear // Changed to clear
         window.isMovable = true

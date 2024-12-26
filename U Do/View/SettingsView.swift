@@ -231,7 +231,9 @@ struct SettingsView: View {
                     .padding(.bottom, 70)
                 HStack (alignment: .bottom) {
                     Spacer()
-                    Button(action: { NSApplication.shared.terminate(nil) }, label: {
+                    Button(action: { 
+                        
+                        NSApplication.shared.terminate(nil) }, label: {
                         Image(systemName: "power")
                             .fontWeight(.bold)
                             .font(.system(size: 16))

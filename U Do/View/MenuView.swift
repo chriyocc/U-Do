@@ -121,6 +121,8 @@ struct TaskRow: View {
     @State private var isLongPressTriggered = false
     @FocusState private var isFocused: Bool
     @State private var hover: Bool = false
+    @State private var tapCount = 0  // Track the number of taps
+    @State private var showDeletePrompt = false
     
 
     
@@ -135,7 +137,17 @@ struct TaskRow: View {
                     
                 } else {
                     // Tap detected, delete task
-                    viewModel.deleteTask(task)
+                    tapCount += 1
+                    
+                    if tapCount == 2 {
+                        viewModel.deleteTask(task)
+                        tapCount = 0
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        if tapCount == 1 {
+                           tapCount = 0
+                        }
+                    }
                 }
                 isLongPressTriggered = false // Reset after action
             
@@ -157,6 +169,7 @@ struct TaskRow: View {
                         .focused($isFocused)
                         .onSubmit {
                             viewModel.editTask(task, newTitle: editText)
+                            viewModel.saveTasks()
                             isEditing = false
                         }
                         .onAppear {
@@ -177,6 +190,7 @@ struct TaskRow: View {
                     HStack(spacing: 10) {
                         CircleButton(icon: "checkmark", fontColor: .white, bgColor: Color.green, action: {
                             viewModel.editTask(task, newTitle: editText)
+                            viewModel.saveTasks()
                             isEditing = false
                         })
                         
@@ -188,7 +202,7 @@ struct TaskRow: View {
                     .buttonStyle(PlainButtonStyle())
                     
                 } else {
-                    CircleButton(icon: "pencil", fontColor: .white, bgColor: Color.gray.opacity(0.2), action: {
+                    CircleButton(icon: "pencil", fontColor: .primary, bgColor: Color.gray.opacity(0.2), action: {
                         editText = task.title
                         isEditing = true
                         
@@ -242,6 +256,7 @@ struct NewTaskRow: View {
                 .onSubmit {
                     guard !viewModel.newTaskText.isEmpty else { return }
                     viewModel.addTaskFromInline()
+                    viewModel.saveTasks()
                 }
             
             Spacer()
@@ -249,6 +264,7 @@ struct NewTaskRow: View {
             HStack(spacing: 10) {
                 
                 CircleButton(icon: "checkmark", fontColor: .white, bgColor: Color.green, action: {
+                    viewModel.saveTasks()
                     viewModel.addTaskFromInline()
                 })
                 

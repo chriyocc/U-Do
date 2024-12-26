@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
  
     
     var statusItem: NSStatusItem?
-    var popOver = NSPopover()
+    var window = NSWindow()
     var timer: Timer?
     var currentTaskIndex = 0
     let taskViewModel = TaskViewModel()
@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         let menuView = MenuView(viewModel: taskViewModel)
         
-        setupPopover(with: menuView)
+        setupWindow(with: menuView)
         setupStatusItem()
         rotateTask()
         startTaskRotation()
@@ -45,14 +45,51 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSNotification.Name("UpdateTaskRotation"),
             object: nil
         )
+        
+        window.hidesOnDeactivate = false
+            
+        // Add these window behavior flags
+        window.collectionBehavior = [.transient, .ignoresCycle]
+        
     }
     
-    func setupPopover(with menuView: MenuView) {
-        popOver.behavior = .transient
-        popOver.animates = true
-        popOver.contentViewController = NSViewController()
-        popOver.contentViewController?.view = NSHostingView(rootView: menuView)
-        popOver.contentViewController?.view.window?.makeKey()
+    func setupWindow(with menuView: MenuView) {
+        let hostingView = NSHostingView(rootView: menuView)
+        window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
+            styleMask: [.titled],
+            backing: .buffered,
+            defer: false
+        )
+        window.contentView = hostingView
+        window.backgroundColor = .clear // Changed to clear
+        window.isMovable = true
+        window.level = .floating
+        window.hasShadow = true
+        
+        window.titleVisibility = .hidden
+        window.isOpaque = false
+       
+        window.titlebarAppearsTransparent = true
+        hostingView.wantsLayer = true
+        hostingView.layer?.cornerRadius = 20
+        hostingView.layer?.masksToBounds = true
+      
+        
+        let monitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+            guard let self = self, self.window.isVisible else { return }
+            
+            let clickLocation = event.locationInWindow
+            let windowFrame = self.window.frame
+            
+            // Check if click is outside the window
+            if !NSPointInRect(clickLocation, windowFrame) {
+                self.window.orderOut(nil)
+            }
+        }
+        
+        // Store the monitor to prevent it from being deallocated
+        objc_setAssociatedObject(window, "monitorKey", monitor, .OBJC_ASSOCIATION_RETAIN)
     }
     
     func setupStatusItem() {
@@ -103,10 +140,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     @objc func MenuButtonToggle(sender: AnyObject) {
-        if popOver.isShown {
-            popOver.performClose(sender)
-        } else if let menuButton = statusItem?.button {
-            popOver.show(relativeTo: menuButton.bounds, of: menuButton, preferredEdge: NSRectEdge.minY)
+        if window.isVisible {
+            window.orderOut(nil)
+        } else {
+            
+            SettingsViewModel.shared.menuWindow = window
+            
+            // Position window below the status item
+            if let button = statusItem?.button {
+                let buttonFrame = button.window?.convertToScreen(button.frame) ?? .zero
+                let windowFrame = window.frame
+                let x = buttonFrame.minX - (windowFrame.width - buttonFrame.width) / 2
+                let y = buttonFrame.minY - windowFrame.height + window.titlebarHeightAdjustment()
+                
+                // Ensure the window stays within screen bounds
+                if let screen = NSScreen.main {
+                    let screenFrame = screen.visibleFrame
+                    let adjustedX = min(max(x, screenFrame.minX), screenFrame.maxX - windowFrame.width)
+                    window.setFrameOrigin(NSPoint(x: adjustedX, y: y))
+                }
+                NSApplication.shared.activate(ignoringOtherApps: true)
+                window.makeKeyAndOrderFront(nil)
+                window.makeFirstResponder(window.contentView)
+            }
         }
+    }
+}
+
+extension NSWindow {
+    func titlebarHeightAdjustment() -> CGFloat {
+        guard let contentView = self.contentView else { return 0 }
+        return self.frame.height - contentView.frame.height
     }
 }

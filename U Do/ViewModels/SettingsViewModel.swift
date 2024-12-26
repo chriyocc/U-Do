@@ -35,10 +35,12 @@ class SettingsViewModel: ObservableObject {
     
     
     
-    private var settingsWindow: NSWindow?
+    var settingsWindow: NSWindow?
     
     @Published var temporaryTimeSecond: Double = 1.0
     weak var timer: Timer?
+    
+    var menuWindow: NSWindow? // Add a reference to MenuView's window
     
     private init() {
             // Load saved time interval or use default
@@ -72,18 +74,21 @@ class SettingsViewModel: ObservableObject {
        )
         print("Save Changes(e): \(priorityEmoji)")
         
+        
     
     }
     
     func closeWindow() {
         settingsWindow?.close()
+        settingsWindow = nil
         NSWindow().isReleasedWhenClosed = true
     }
     
     
     
     func showSettings() {
-        
+            menuWindow?.orderOut(nil)
+            
             NSApp.activate(ignoringOtherApps: true)
 
             // Create and store window reference

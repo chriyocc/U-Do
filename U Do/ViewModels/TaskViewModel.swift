@@ -17,11 +17,16 @@ class TaskViewModel: ObservableObject {
     @Published var newTaskText: String = ""
     @Published var isAddingNewTask: Bool = false
     @Published var currentTaskIndex = 0
-    @Published var tasks: [Task] = []
-        
+    @Published var tasks: [Task] = [] {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name("UpdateMenu"), object: nil)
+        }
+    }
         
     
     private let tasksKey = "savedTasks"
+    
+    
     
     init() {
         loadTasks()
@@ -54,9 +59,10 @@ class TaskViewModel: ObservableObject {
         objectWillChange.send()
     }
     
-    private func saveTasks() {
+    func saveTasks() {
         if let encoded = try? JSONEncoder().encode(tasks) {
             UserDefaults.standard.set(encoded, forKey: tasksKey)
+            
         }
     }
     

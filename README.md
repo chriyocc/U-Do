@@ -1,8 +1,8 @@
 # U Do
 
-U Do is a macOS menubar app that rotates tasks from a to-do list and will show on your menubar directly.
+A macOS menubar app that rotates tasks from to-do list on menubar.
 
-U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任务，并直接显示在菜单栏上。
+一款 macOS 菜单栏应用程序，可以在菜单栏上轮换待办事项列表中的任务。
 
 ## Features 功能
 
@@ -34,77 +34,47 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
   ![SPYWc.png](https://s7.gifyu.com/images/SPYWc.png)
 
-## Requirements
+## Requirements 要求
 
-- macOS (13.6 and after)
+- macOS 13.6 and after<br>macOS 13.6 及以上版本
 
-  **系统要求：** macOS（13.6及以上版本）
+## Installation Guide 安装教程
 
-## Contributing
+1. Download from releases.<br>从 releases 下载。
+2. Drag U Do to Applications Folder.<br>将 U Do 拖动到“应用程序”文件夹。
+3. Done.<br>完成。
 
-Feel free to submit issues or contribute improvements via pull requests.
+> [!NOTE]
+> If you encounter the error: *application is damaged and cannot be opened*, follow these steps:<br>如果遇到错误：“*应用程序已损坏，无法打开*”，请按照以下步骤操作：
 
-**贡献：** 欢迎提交问题或通过拉取请求贡献改进。
+1. Open Terminal.<br>打开终端。
+2. Run the following command:<br>运行以下命令：
 
-## Links
-
-[Download](https://github.com/chriyocc/U-Do/releases/latest)
-
-**下载链接：** [下载](https://github.com/chriyocc/U-Do/releases/latest)
-
-## Download Guide 下载
-
-1. Download from releases.
-
-   从发布页面下载。
-
-2. Drag U Do to Applications Folder.
-
-   将 U Do 拖动到“应用程序”文件夹。
-
-3. Done.
-
-   完成。
-
-If you encounter the error: *application is damaged and cannot be opened*, follow these steps:
-
-如果遇到错误：“*应用程序已损坏，无法打开*”，请按照以下步骤操作：
-
-1. Open Terminal.
-
-   打开终端。
-
-2. Run the following command:
-
-   运行以下命令：
-
-   ```
+   ```bash
    sudo spctl --master-disable
    ```
 
-3. Open the app.
+3. Open the app.<br>打开应用程序。
+4. Run the following command:<br>运行以下命令：
 
-   打开应用程序。
-
-4. Run the following command:
-
-   运行以下命令：
-
-   ```
+   ```bash
    sudo spctl --master-enable
    ```
 
-5. Done.
+5. Done.<br>完成。
 
-   完成。
+## Instructions 使用指南
 
-## User Instructions 用户说明
+1. Press the + button to add a new task.<br>按下 + 按钮添加新任务。
+2. Long press a task to set its priority.<br>长按任务以设置优先级。
+3. Double click a task to mark it as done or delete it.<br>双击任务以标记为完成或删除。
+4. Press the power off button to quit the U Do app.<br>按下电源按钮退出 U Do 应用程序。
 
-1. Press the + button to add a new task.
-   1. 按下“+”按钮添加新任务。
-2. Long press a task to set its priority.
-   1. 长按任务以设置优先级。
-3. Double click a task to mark it as done or delete it.
-   1. 双击任务以标记为完成或删除。
-4. Press the power off button to quit the U Do app.
-   1. 按下电源按钮退出 U Do 应用程序。
+## Links 链接
+
+[Download 下载](https://github.com/chriyocc/U-Do/releases/latest)
+
+## Contributing 贡献
+
+- Feel free to report any [issues](https://github.com/chriyocc/U-Do/issues).<br>遇到问题可以提交 [issues](https://github.com/chriyocc/U-Do/issues).
+- [Pull requests](https://github.com/chriyocc/U-Do/pulls) are always welcome.<br>随时欢迎 [Pull requests](https://github.com/chriyocc/U-Do/pulls).

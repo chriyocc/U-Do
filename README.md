@@ -28,9 +28,9 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
   ![SPYWg.png](https://s7.gifyu.com/images/SPYWg.png)
 
-- **Task Priority:** Able to select normal or high priority for your task. High-priority tasks will have a red emoji in front.
+- **Task Priority:** Able to select normal or high priority for your task. High-priority tasks will have a emoji in front.
 
-  **任务优先级：** 可以为任务选择普通或高优先级。高优先级任务会在前方加上红色的表情符号。
+  **任务优先级：** 可以为任务选择普通或高优先级。高优先级任务会在前方加上表情符号。
 
   ![SPYWc.png](https://s7.gifyu.com/images/SPYWc.png)
 

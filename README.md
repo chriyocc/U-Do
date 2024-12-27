@@ -36,7 +36,7 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
 ## Requirements
 
-- macOS (13.6 and after)
+- macOS (13.3 and after)
 
   **系统要求：** macOS（13.6及以上版本）
 

@@ -20,6 +20,17 @@ struct U_DoApp: App {
     }
 }
 
+class CustomWindow: NSWindow {
+    override var canBecomeKey: Bool {
+        return true
+    }
+    
+    override var canBecomeMain: Bool {
+        return true
+    }
+}
+
+
 class AppDelegate: NSObject, NSApplicationDelegate {
  
     
@@ -55,9 +66,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func setupWindow(with menuView: MenuView) {
         let hostingView = NSHostingView(rootView: menuView)
-        window = NSWindow(
+        window = CustomWindow(
             contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
-            styleMask: [.titled],
+            styleMask: [.fullSizeContentView],
             backing: .buffered,
             defer: false
         )
@@ -72,6 +83,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.isOpaque = false
        
         window.titlebarAppearsTransparent = true
+        
+        
+        
         hostingView.wantsLayer = true
         hostingView.layer?.cornerRadius = 20
         hostingView.layer?.masksToBounds = true
@@ -163,6 +177,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApplication.shared.activate(ignoringOtherApps: true)
                 window.makeKeyAndOrderFront(nil)
                 window.makeFirstResponder(window.contentView)
+                
+                
             }
         }
     }

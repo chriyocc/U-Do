@@ -16,6 +16,7 @@ class WindowManager: NSObject {
             window.isOpaque = false
             window.backgroundColor = .clear
             window.hasShadow = true
+            
         }
     }
 }

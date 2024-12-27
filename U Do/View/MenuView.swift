@@ -14,6 +14,8 @@ struct MenuView: View {
     @State private var editingTask: Task?
     @State private var editText: String = ""
     @State private var hover: Bool = false
+    @State private var hoverGearButton: Bool = false
+    @State private var hoverPlusButton: Bool = false
     
     
     var body: some View {
@@ -24,6 +26,7 @@ struct MenuView: View {
                 HStack {
                     Text("U Do")
                         .font(.system(size: 40, weight: .bold))
+                    
                         .padding(.leading, 10)
                     
                     Spacer()
@@ -36,18 +39,19 @@ struct MenuView: View {
                             Image(systemName: "gear")
                                 .fontWeight(.bold)
                                 .font(.system(size: 13))
+                                .foregroundColor(Color("globalColor"))
                                 .padding(10)
                                 .background(Circle().fill(Color.gray.opacity(0.2)))
                         })
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal, 1)
+                        .scaleEffect(hoverGearButton ? 1.1 : 1.0) // Scale effect
                         .onHover { isHovered in
-                            self.hover = isHovered
-                            DispatchQueue.main.async { //<-- Here
-                                if (self.hover) {
+                            self.hoverGearButton = isHovered
+                            DispatchQueue.main.async {
+                                if (self.hoverGearButton) {
                                     NSCursor.pointingHand.push()
                                 } else {
-                                    self.hover = false
                                     NSCursor.pop()
                                 }
                             }
@@ -59,15 +63,17 @@ struct MenuView: View {
                         Image(systemName: "plus")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
+                            .foregroundColor(Color("globalColor"))
                             .padding(10)
                             .background(Circle().fill(Color.gray.opacity(0.2)))
                     })
                     .buttonStyle(PlainButtonStyle())
                     .padding(.trailing, 13)
+                    .scaleEffect(hoverPlusButton ? 1.1 : 1.0) // Scale effect
                     .onHover { isHovered in
-                        self.hover = isHovered
-                        DispatchQueue.main.async { //<-- Here
-                            if (self.hover) {
+                        self.hoverPlusButton = isHovered
+                        DispatchQueue.main.async {
+                            if (self.hoverPlusButton) {
                                 NSCursor.pointingHand.push()
                             } else {
                                 NSCursor.pop()
@@ -82,6 +88,7 @@ struct MenuView: View {
                     
                         if viewModel.isAddingNewTask {
                             NewTaskRow(viewModel: viewModel)
+                            
                         }
                         ForEach(viewModel.tasks) { task in
                             TaskRow(task: task, viewModel: viewModel)
@@ -125,6 +132,7 @@ struct TaskRow: View {
     @State private var hover: Bool = false
     @State private var tapCount = 0  // Track the number of taps
     @State private var showDeletePrompt = false
+   
     
 
     
@@ -211,12 +219,14 @@ struct TaskRow: View {
                     })
                     .padding(.horizontal)
                     .buttonStyle(PlainButtonStyle())
+                    
                 }
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
-            .background((task.isHighPriority) ? Color(SettingsViewModel.shared.priorityColor).opacity(0.2) : Color.gray.opacity(0.2))
+            .background((task.isHighPriority) ? Color(SettingsViewModel.shared.priorityColor).opacity(0.3) : Color.gray.opacity(0.2))
             .cornerRadius(30)
+            
             
             
             
@@ -237,6 +247,17 @@ struct TaskRow: View {
         
         .buttonStyle(PlainButtonStyle())
         .padding(.horizontal, 15)
+        .scaleEffect(hover ? 1.02 : 1.0)
+        .onHover { isHovered in
+            self.hover = isHovered
+            DispatchQueue.main.async {
+                if (self.hover) {
+                    NSCursor.pointingHand.push()
+                } else {
+                    NSCursor.pop()
+                }
+            }
+        }
 
     }
 }

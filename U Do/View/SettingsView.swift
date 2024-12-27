@@ -14,9 +14,11 @@ import Combine
 struct SettingsView: View {
     @State private var timeInterval: String = "" // State for the time interval input
     @State private var isEditing = false
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var viewModel: SettingsViewModel
     @State private var isPressed: Bool = false
     @State private var hover: Bool = false
+    @Namespace private var animationNamespace
     
     
     
@@ -42,6 +44,7 @@ struct SettingsView: View {
                         Image(systemName: "arrow.left.square")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
+                            .foregroundColor(Color("globalColor"))
                             .padding(10)
                             .background(Circle().fill(Color.gray.opacity(0.2)))
                     })
@@ -159,6 +162,15 @@ struct SettingsView: View {
                                 
                             })
                             .buttonStyle(PlainButtonStyle())
+                            .overlay(
+                                // Add a stroke when the color is selected
+                                
+                                Circle()
+                                    .stroke(viewModel.priorityColor == "Color_\(index)" ?    (colorScheme == .dark ? Color.primary : Color.white).opacity(0.8)
+                                            : Color.clear,
+                                        lineWidth: 2)
+                                    .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
+                            )
                             .onHover { isHovered in
                                 self.hover = isHovered
                                 DispatchQueue.main.async { //<-- Here
@@ -170,8 +182,7 @@ struct SettingsView: View {
                                     }
                                 }
                             }
-                            
-                            
+                            .animation(.easeInOut(duration: 0.3), value: viewModel.priorityColor)
                             
                             
                         }
@@ -196,29 +207,50 @@ struct SettingsView: View {
                     Spacer()
                     
                     
+                    VStack {
+                        
                         HStack(spacing: 16) {
-                            Spacer()
+                                Spacer()
+                                
                             let emojis = [ "🔴","🛑","‼️","💥","⚠️"]
-                            
-                            ForEach(emojis, id: \.self) { emoji in
-                                Button(action: {
-                                    // Your button action here
-                                    print("Emoji tapped: \(emoji)")
-                                    viewModel.priorityEmoji = "\(emoji)"
-                                    isPressed = true
-                                }) {
-                                    Text(emoji)
-                                        .font(.system(size: 30))
+                                ForEach(emojis, id: \.self) { emoji in
+                                    Button(action: {
+                                        // Your button action here
+                                        withAnimation(.easeInOut(duration: 0.2)) {
+                                                       viewModel.priorityEmoji = emoji
+                                                   }
+                                        print("Emoji tapped: \(emoji)")
+                                        viewModel.priorityEmoji = "\(emoji)"
+                                        isPressed = true
+                                    }) {
+                                        ZStack(alignment: .bottom) {
+                                            Text(emoji)
+                                                .font(.system(size: 30))
+                                            
+                                            // Show a circle below the selected emoji
+                                            if viewModel.priorityEmoji == emoji {
+                                                Circle()
+                                                    .frame(width: 5, height: 5)
+                                                    .foregroundColor((colorScheme == .dark ? Color.primary : Color.gray))
+                                                    .offset(y: 8) // Adjust the position of the circle
+                                                    .matchedGeometryEffect(id: "selectedEmoji", in: animationNamespace)
+                                                
+                                                    
+                                                    
+                                            }
+                                        }
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    
                                     
                                 }
-                                .buttonStyle(PlainButtonStyle())
-
                                 
-                            }
-                            
-                            
-                            Spacer()
+                                
+                                Spacer()
                         }
+                        
+                    }
+                    
                     
                 }
                 
@@ -238,6 +270,7 @@ struct SettingsView: View {
                             .fontWeight(.bold)
                             .font(.system(size: 16))
                             .padding(10)
+                            .foregroundColor(Color("globalColor"))
                             .background(Circle().fill(Color.gray.opacity(0.2)))
                     })
                     .buttonStyle(PlainButtonStyle())

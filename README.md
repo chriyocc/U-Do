@@ -20,7 +20,7 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
   **设置：** 可以设置自己的时间间隔、优先级颜色和优先级表情符号。
 
-  ![SPDWE.png](https://s7.gifyu.com/images/SPDWE.png)
+  [![SPouP.png](https://s13.gifyu.com/images/SPouP.png)](https://gifyu.com/image/SPouP)
 
 - **Task Management:** Add, delete, and set time interval between tasks. Double click on the completed task to delete it.
 

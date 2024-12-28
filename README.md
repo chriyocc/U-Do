@@ -62,7 +62,7 @@ Feel free to submit issues or contribute improvements via pull requests.
 
 3. **<u>MUST</u>** right click and press open.
 
-   **<u>一定要</u>**右键选择打开。
+   <u>一定要</u>右键选择打开。
 
 4. Done.
 

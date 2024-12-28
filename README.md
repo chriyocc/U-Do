@@ -4,6 +4,10 @@ U Do is a macOS menubar app that rotates tasks from a to-do list and will show o
 
 U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任务，并直接显示在菜单栏上。
 
+
+
+<img src="https://s7.gifyu.com/images/SP1th.png" alt="SP1th.png" style="width:300px; height:300px;">
+
 ## Features 功能
 
 - **Menubar Display:** Tasks are shown directly on the macOS menubar.

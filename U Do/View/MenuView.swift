@@ -112,7 +112,7 @@ struct VisualEffectView: NSViewRepresentable {
         let view = NSVisualEffectView()
         view.blendingMode = .behindWindow
         view.state = .active
-        view.material = .sidebar
+        view.material = .fullScreenUI
         view.alphaValue = 1.0 // Adjust opacity (0.0 to 1.0)
         return view
     }

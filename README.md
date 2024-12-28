@@ -48,61 +48,33 @@ Feel free to submit issues or contribute improvements via pull requests.
 
 [Download](https://github.com/chriyocc/U-Do/releases/latest)
 
-**下载链接：** [下载](https://github.com/chriyocc/U-Do/releases/latest)
+[下载](https://github.com/chriyocc/U-Do/releases/latest)
 
 ## Download Guide 下载
 
-1. Download from releases.
+1. Download from releases or [download](https://github.com/chriyocc/U-Do/releases/latest).
 
-   从发布页面下载。
+   从发布页面[下载](https://github.com/chriyocc/U-Do/releases/latest)。
 
 2. Drag U Do to Applications Folder.
 
    将 U Do 拖动到“应用程序”文件夹。
 
-3. Done.
+3. **<u>MUST</u>** right click and press open.
 
-   完成。
+   **<u>一定要</u>**右键选择打开。
 
-If you encounter the error: *application is damaged and cannot be opened*, follow these steps:
-
-如果遇到错误：“*应用程序已损坏，无法打开*”，请按照以下步骤操作：
-
-1. Open Terminal.
-
-   打开终端。
-
-2. Run the following command:
-
-   运行以下命令：
-
-   ```
-   sudo spctl --master-disable
-   ```
-
-3. Open the app.
-
-   打开应用程序。
-
-4. Run the following command:
-
-   运行以下命令：
-
-   ```
-   sudo spctl --master-enable
-   ```
-
-5. Done.
+4. Done.
 
    完成。
 
 ## User Instructions 用户说明
 
 1. Press the + button to add a new task.
-   1. 按下“+”按钮添加新任务。
+   按下“+”按钮添加新任务。
 2. Long press a task to set its priority.
-   1. 长按任务以设置优先级。
+   长按任务以设置优先级。
 3. Double click a task to mark it as done or delete it.
-   1. 双击任务以标记为完成或删除。
+   双击任务以标记为完成或删除。
 4. Press the power off button to quit the U Do app.
-   1. 按下电源按钮退出 U Do 应用程序。
+   按下电源按钮退出 U Do 应用程序。

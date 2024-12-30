@@ -155,6 +155,7 @@ struct TaskRow: View {
                 viewModel.togglePriority(task)
                 
                 viewModel.togglePriority(task)
+                viewModel.saveTasks()
                 
                     
                 } else {

@@ -20,6 +20,7 @@ class TaskViewModel: ObservableObject {
     @Published var tasks: [Task] = [] {
         didSet {
             NotificationCenter.default.post(name: NSNotification.Name("UpdateMenu"), object: nil)
+            print("Updated")
         }
     }
         

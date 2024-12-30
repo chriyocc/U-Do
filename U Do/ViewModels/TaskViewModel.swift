@@ -75,13 +75,18 @@ class TaskViewModel: ObservableObject {
     
     func addTask(title: String) {
         guard !title.isEmpty else { return }
+        
         tasks.insert(Task(title: title), at: 0)
+        
     }
 
     func deleteTask(_ task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
-            tasks.remove(at: index)
-            saveTasks()
+            withAnimation{
+                tasks.remove(at: index)
+                saveTasks()
+            }
+            
         }
     }
     
@@ -96,6 +101,7 @@ class TaskViewModel: ObservableObject {
             addTask(title: newTaskText)
             newTaskText = ""
             isAddingNewTask = false
+            
         }
     }
     

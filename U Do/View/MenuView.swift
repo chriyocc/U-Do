@@ -59,7 +59,11 @@ struct MenuView: View {
                     }
                     
                     
-                    Button(action: { viewModel.isAddingNewTask = true }, label: {
+                    Button(action: {
+                        withAnimation {
+                            viewModel.isAddingNewTask = true
+                        }
+                    }, label: {
                         Image(systemName: "plus")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
@@ -85,17 +89,24 @@ struct MenuView: View {
                 
                 
                 ScrollView {
-                    
+                    VStack(spacing: 8) {
+                        
                         if viewModel.isAddingNewTask {
                             NewTaskRow(viewModel: viewModel)
+                                .transition(.move(edge: .top).combined(with: .opacity))
                             
                         }
                         ForEach(viewModel.tasks) { task in
                             TaskRow(task: task, viewModel: viewModel)
+                                .transition(.move(edge: .trailing).combined(with: .opacity))
+                                
                         }
                     }
                     
                     Spacer(minLength: 10)
+                }
+                    
+                    
                 }
                 .frame(width: 300, height: 400)
                 .onAppear {
@@ -112,7 +123,7 @@ struct VisualEffectView: NSViewRepresentable {
         let view = NSVisualEffectView()
         view.blendingMode = .behindWindow
         view.state = .active
-        view.material = .fullScreenUI
+        view.material = .menu
         view.alphaValue = 1.0 // Adjust opacity (0.0 to 1.0)
         return view
     }
@@ -132,6 +143,7 @@ struct TaskRow: View {
     @State private var hover: Bool = false
     @State private var tapCount = 0  // Track the number of taps
     @State private var showDeletePrompt = false
+    @State private var taskDone = false
    
     
 
@@ -151,8 +163,10 @@ struct TaskRow: View {
                     
                     if tapCount == 2 {
                         viewModel.deleteTask(task)
+                        
                         tapCount = 0
                     }
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         if tapCount == 1 {
                            tapCount = 0

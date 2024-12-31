@@ -9,16 +9,13 @@
 import SwiftUI
 
 struct MenuView: View {
-    @ObservedObject var viewModel = TaskViewModel()
     @Environment(\.colorScheme) var colorScheme
-    @State private var editingTask: Task?
-    @State private var editText: String = ""
+    @ObservedObject var viewModel = TaskViewModel()
     @State private var hover: Bool = false
     @State private var hoverGearButton: Bool = false
     @State private var hoverPlusButton: Bool = false
     
     var onSettingsTap: () -> Void
-    
     
     var body: some View {
         ZStack {
@@ -28,7 +25,6 @@ struct MenuView: View {
                 HStack {
                     Text("U Do")
                         .font(.system(size: 40, weight: .bold))
-                    
                         .padding(.leading, 10)
                     
                     Spacer()
@@ -91,6 +87,7 @@ struct MenuView: View {
                 
                 
                 ScrollView {
+                    
                     VStack(spacing: 8) {
                         
                         if viewModel.isAddingNewTask {
@@ -107,18 +104,19 @@ struct MenuView: View {
                     
                     Spacer(minLength: 10)
                 }
+                .scrollIndicators(.never)
                     
                     
                 }
                 .frame(width: 300, height: 400)
                 .onAppear {
-                            WindowManager.shared.setupWindow()
-                    }
-            
+                    WindowManager.shared.setupWindow()
             }
         
         }
+    
     }
+}
 
 struct VisualEffectView: NSViewRepresentable {
     func makeNSView(context: Context) -> NSVisualEffectView {
@@ -131,6 +129,7 @@ struct VisualEffectView: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: NSVisualEffectView, context: Context) {}
+    
 }
 
 
@@ -139,37 +138,29 @@ struct TaskRow: View {
     @ObservedObject var viewModel: TaskViewModel
     @State private var isEditing = false
     @State private var editText: String = ""
-    @GestureState private var isDetectingLongPress = false
     @State private var isLongPressTriggered = false
-    @FocusState private var isFocused: Bool
     @State private var hover: Bool = false
     @State private var tapCount = 0  // Track the number of taps
-    @State private var showDeletePrompt = false
-    @State private var taskDone = false
-   
+    @GestureState private var isDetectingLongPress = false
+    @FocusState private var isFocused: Bool
     
 
     
     var body: some View {
         Button(action: {
             if isLongPressTriggered {
-                    // Long press detected, toggle priority
+                // Long press detected, toggle priority
                 viewModel.togglePriority(task)
-                
                 viewModel.togglePriority(task)
                 viewModel.saveTasks()
                 
-                    
                 } else {
                     // Tap detected, delete task
                     tapCount += 1
-                    
                     if tapCount == 2 {
                         viewModel.deleteTask(task)
-                        
                         tapCount = 0
                     }
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         if tapCount == 1 {
                            tapCount = 0
@@ -226,7 +217,7 @@ struct TaskRow: View {
                         })
                     }
                     .padding(.horizontal)
-                    .buttonStyle(PlainButtonStyle())
+                    
                     
                 } else {
                     CircleButton(icon: "pencil", fontColor: .primary, bgColor: Color.gray.opacity(0.2), action: {
@@ -235,18 +226,15 @@ struct TaskRow: View {
                         
                     })
                     .padding(.horizontal)
-                    .buttonStyle(PlainButtonStyle())
+                    
                     
                 }
             }
+            .buttonStyle(PlainButtonStyle())
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
             .background((task.isHighPriority) ? Color(SettingsViewModel.shared.priorityColor).opacity(0.3) : Color.gray.opacity(0.2))
             .cornerRadius(30)
-            
-            
-            
-            
             
         })
         .contentShape(Rectangle())

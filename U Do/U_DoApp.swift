@@ -32,15 +32,12 @@ class CustomWindow: NSWindow {
 
 
 class AppDelegate: NSObject, NSApplicationDelegate {
- 
     
     var statusItem: NSStatusItem?
     var window = NSWindow()
     var timer: Timer?
     var currentTaskIndex = 0
     let taskViewModel = TaskViewModel()
-
-    
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         let menuView = IntegratedMenuView(taskViewModel: taskViewModel)
@@ -78,14 +75,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.isMovable = true
         window.level = .floating
         window.hasShadow = true
-        
         window.titleVisibility = .hidden
         window.isOpaque = false
-       
         window.titlebarAppearsTransparent = true
-        
-        
-        
+
         hostingView.wantsLayer = true
         hostingView.layer?.cornerRadius = 20
         hostingView.layer?.masksToBounds = true

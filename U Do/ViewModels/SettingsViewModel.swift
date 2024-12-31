@@ -32,9 +32,6 @@ class SettingsViewModel: ObservableObject {
         }
     }
     
-    
-    
-    
     var settingsWindow: NSWindow?
     
     @Published var temporaryTimeSecond: Double = 1.0
@@ -51,8 +48,6 @@ class SettingsViewModel: ObservableObject {
             updateRotationTimer()
             
         }
-    
-  
     
 
     func saveChanges() {
@@ -83,10 +78,6 @@ class SettingsViewModel: ObservableObject {
         settingsWindow = nil
         NSWindow().isReleasedWhenClosed = true
     }
-    
-    
-    
-    
     
     private func updateRotationTimer() {
            // Invalidate existing timer

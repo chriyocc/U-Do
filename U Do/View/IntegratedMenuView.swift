@@ -36,6 +36,7 @@ struct IntegratedMenuView: View {
     @State private var currentView: MenuTab = .tasks
     @State private var slideOffset: CGFloat = 0
     
+    
     enum MenuTab {
         case tasks
         case settings
@@ -48,6 +49,7 @@ struct IntegratedMenuView: View {
     var body: some View {
         ZStack {
             VisualEffectView()
+            
             
             HStack(spacing: 0) {
                 // MenuView
@@ -71,6 +73,8 @@ struct IntegratedMenuView: View {
                 .opacity(currentView == .settings ? 1 : 0.3)
             }
             
+            
+            
             VStack {
                 Spacer()
                 HomeIndicatorView(currentPage: currentView)
@@ -79,6 +83,7 @@ struct IntegratedMenuView: View {
             
         }
         .frame(width: 300, height: 400)
+        
         .animation(.spring(response: 0.3, dampingFraction: 0.8), value: slideOffset)
     }
 }

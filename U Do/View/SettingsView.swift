@@ -37,13 +37,10 @@ struct SettingsView: View {
                 Spacer()
                 
                 HStack {
-                    Button(action:
-                        
-                        onBackTap
-                        
-                        
+                    Button(action: 
+                            onBackTap
                     , label: {
-                        Image(systemName: "arrow.left.square")
+                        Image(systemName: "arrow.right")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
                             .foregroundColor(Color("globalColor"))
@@ -66,8 +63,7 @@ struct SettingsView: View {
                 }
                 
                 .padding(.trailing, 13)
-                
-                
+
             }
             .padding(.bottom, 5)
             
@@ -75,9 +71,7 @@ struct SettingsView: View {
                 .padding(.bottom, 5)
             
             ScrollView {
-                
-                
-                    
+
                 VStack {
                     
                     HStack(alignment: .bottom) {
@@ -236,31 +230,19 @@ struct SettingsView: View {
                                                     .foregroundColor((colorScheme == .dark ? Color.primary : Color.gray))
                                                     .offset(y: 8) // Adjust the position of the circle
                                                     .matchedGeometryEffect(id: "selectedEmoji", in: animationNamespace)
-                                                
-                                                    
+
                                                     
                                             }
                                         }
                                     }
                                     .buttonStyle(PlainButtonStyle())
-                                    
-                                    
                                 }
-                                
-                                
                                 Spacer()
                         }
                         
                     }
-                    
-                    
+
                 }
-                
-                
-                    
-                
-                
-                
                 
                 HStack (alignment: .bottom) {
                     Spacer()
@@ -299,13 +281,10 @@ struct SettingsView: View {
                
             }
         }
-        
+        .scrollIndicators(.never)
         .padding()
     }
 }
-
-
-
 
 #Preview {
     SettingsView(viewModel: SettingsViewModel.shared, onBackTap: {})

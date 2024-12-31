@@ -11,16 +11,11 @@ import SwiftUI
 
 class TaskViewModel: ObservableObject {
     
-
-    @Published var newTaskTitle: String = ""
-    @Published var isShowingAddTask = false
     @Published var newTaskText: String = ""
     @Published var isAddingNewTask: Bool = false
-    @Published var currentTaskIndex = 0
     @Published var tasks: [Task] = [] {
         didSet {
             NotificationCenter.default.post(name: NSNotification.Name("UpdateMenu"), object: nil)
-            print("Updated")
         }
     }
         

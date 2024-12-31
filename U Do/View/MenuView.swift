@@ -17,6 +17,8 @@ struct MenuView: View {
     @State private var hoverGearButton: Bool = false
     @State private var hoverPlusButton: Bool = false
     
+    var onSettingsTap: () -> Void
+    
     
     var body: some View {
         ZStack {
@@ -32,10 +34,10 @@ struct MenuView: View {
                     Spacer()
                     
                     HStack {
-                        Button(action: {
-                            SettingsViewModel.shared.showSettings()
+                        Button(action:
+                            onSettingsTap
                             
-                        }, label: {
+                        , label: {
                             Image(systemName: "gear")
                                 .fontWeight(.bold)
                                 .font(.system(size: 13))
@@ -329,5 +331,5 @@ struct NewTaskRow: View {
 }
 
 #Preview {
-    MenuView()
+    MenuView(viewModel: TaskViewModel(), onSettingsTap: {})
 }

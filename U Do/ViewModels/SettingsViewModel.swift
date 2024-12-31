@@ -86,30 +86,7 @@ class SettingsViewModel: ObservableObject {
     
     
     
-    func showSettings() {
-            menuWindow?.orderOut(nil)
-            
-            NSApp.activate(ignoringOtherApps: true)
-
-            // Create and store window reference
-            let newWindow = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
-                styleMask: [.closable, .titled],
-                backing: .buffered,
-                defer: false
-            )
-            
-            newWindow.isReleasedWhenClosed = false
-            newWindow.title = "Setting"
-            newWindow.contentView = NSHostingView(rootView: SettingsView(viewModel: self))
-            newWindow.center()
-            
-            // Store the window reference
-            self.settingsWindow = newWindow
-            
-            // Show window
-            newWindow.makeKeyAndOrderFront(nil)
-        }
+    
     
     private func updateRotationTimer() {
            // Invalidate existing timer

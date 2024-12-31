@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let menuView = MenuView(viewModel: taskViewModel)
+        let menuView = IntegratedMenuView(taskViewModel: taskViewModel)
         
         setupWindow(with: menuView)
         setupStatusItem()
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    func setupWindow(with menuView: MenuView) {
+    func setupWindow(with menuView: IntegratedMenuView) {
         let hostingView = NSHostingView(rootView: menuView)
         window = CustomWindow(
             contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),

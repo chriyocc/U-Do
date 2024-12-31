@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450B38F62D23A28E009F5DD6 /* IntegratedMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */; };
 		45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72EF32D19BA3600A4DA2D /* U_DoApp.swift */; };
 		45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72EF52D19BA3600A4DA2D /* ContentView.swift */; };
 		45B72EF82D19BA3800A4DA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B72EF72D19BA3800A4DA2D /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegratedMenuView.swift; sourceTree = "<group>"; };
 		45B72EF02D19BA3600A4DA2D /* U Do.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U Do.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B72EF32D19BA3600A4DA2D /* U_DoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U_DoApp.swift; sourceTree = "<group>"; };
 		45B72EF52D19BA3600A4DA2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				45B72F0F2D1A764100A4DA2D /* WindowManager.swift */,
 				45B72F112D1A767E00A4DA2D /* CircleButton.swift */,
 				45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */,
+				450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				45B72F042D19BA8600A4DA2D /* MenuView.swift in Sources */,
 				45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */,
 				45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */,
+				450B38F62D23A28E009F5DD6 /* IntegratedMenuView.swift in Sources */,
 				45D6EA9F2D1AB72500FA7568 /* SettingsView.swift in Sources */,
 				45B72F102D1A764100A4DA2D /* WindowManager.swift in Sources */,
 				45D6EAA12D1ACABD00FA7568 /* SettingsViewModel.swift in Sources */,
@@ -337,7 +341,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -365,7 +369,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

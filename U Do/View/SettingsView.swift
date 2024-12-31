@@ -11,7 +11,9 @@ import Combine
 
 
 
+
 struct SettingsView: View {
+    
     @State private var timeInterval: String = "" // State for the time interval input
     @State private var isEditing = false
     @Environment(\.colorScheme) var colorScheme
@@ -21,7 +23,7 @@ struct SettingsView: View {
     @Namespace private var animationNamespace
     
     
-    
+    var onBackTap: () -> Void
     
     
     var body: some View {
@@ -35,12 +37,12 @@ struct SettingsView: View {
                 Spacer()
                 
                 HStack {
-                    Button(action: {
+                    Button(action:
                         
-                        viewModel.closeWindow()
+                        onBackTap
                         
                         
-                    }, label: {
+                    , label: {
                         Image(systemName: "arrow.left.square")
                             .fontWeight(.bold)
                             .font(.system(size: 16))
@@ -259,8 +261,7 @@ struct SettingsView: View {
                 
                 
                 
-                Spacer()
-                    .padding(.bottom, 70)
+                
                 HStack (alignment: .bottom) {
                     Spacer()
                     Button(action: { 
@@ -274,7 +275,7 @@ struct SettingsView: View {
                             .background(Circle().fill(Color.gray.opacity(0.2)))
                     })
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.bottom, 1)
+                    .padding(.top, 20)
                     .padding(.trailing, 10)
                     .onHover { isHovered in
                         self.hover = isHovered
@@ -298,7 +299,7 @@ struct SettingsView: View {
                
             }
         }
-        .frame(width: 300, height: 400)
+        
         .padding()
     }
 }
@@ -307,7 +308,7 @@ struct SettingsView: View {
 
 
 #Preview {
-    SettingsView(viewModel: SettingsViewModel.shared)
+    SettingsView(viewModel: SettingsViewModel.shared, onBackTap: {})
 
 }
 

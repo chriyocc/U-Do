@@ -158,13 +158,15 @@ struct SettingsView: View {
                                 
                             })
                             .buttonStyle(PlainButtonStyle())
+                            
                             .overlay(
                                 // Add a stroke when the color is selected
                                 
+                                
                                 Circle()
-                                    .stroke(viewModel.priorityColor == "Color_\(index)" ?    (colorScheme == .dark ? Color.primary : Color.white).opacity(0.8)
+                                    .stroke(viewModel.priorityColor == "Color_\(index)" ?    (colorScheme == .dark ? Color.primary : Color.white)
                                             : Color.clear,
-                                        lineWidth: 2)
+                                        lineWidth: 3)
                                     .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
                             )
                             .onHover { isHovered in

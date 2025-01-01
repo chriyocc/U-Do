@@ -22,10 +22,21 @@ struct MenuView: View {
             VisualEffectView()
             
             VStack(alignment: .leading) {
-                HStack {
-                    Text("U Do")
-                        .font(.system(size: 40, weight: .bold))
-                        .padding(.leading, 10)
+                HStack(alignment: .center) {
+                    
+                        Text("U Do..")
+                        .font(.system(size: 50, weight: .heavy))
+                            .padding(.leading, 10)
+                            .foregroundStyle(
+                                LinearGradient ( colors: [.primary, .gray], startPoint: .topLeading,
+                                                 endPoint: .bottomTrailing)
+                                )
+                        
+                      
+                    
+                        
+                    
+                    
                     
                     Spacer()
                     
@@ -39,13 +50,25 @@ struct MenuView: View {
                                 .font(.system(size: 13))
                                 .foregroundColor(Color("globalColor"))
                                 .padding(10)
-                                .background(Circle().fill(Color.gray.opacity(0.2)))
+                                .background(
+                                    Circle().fill(Color.gray.opacity(0.2))
+                                )
+                                .background(
+                                    // Background blur
+                                    Circle()
+                                        .fill(Color.black.opacity(0.2))
+                                        .blur(radius: 1)
+                                )
+                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                         })
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal, 1)
                         .scaleEffect(hoverGearButton ? 1.1 : 1.0) // Scale effect
                         .onHover { isHovered in
-                            self.hoverGearButton = isHovered
+                            withAnimation(.easeInOut(duration: 0.1)){
+                                self.hoverGearButton = isHovered
+                            }
+                            
                             DispatchQueue.main.async {
                                 if (self.hoverGearButton) {
                                     NSCursor.pointingHand.push()
@@ -67,13 +90,25 @@ struct MenuView: View {
                             .font(.system(size: 16))
                             .foregroundColor(Color("globalColor"))
                             .padding(10)
-                            .background(Circle().fill(Color.gray.opacity(0.2)))
+                            .background(
+                                Circle().fill(Color.gray.opacity(0.2))
+                            )
+                            .background(
+                                // Background blur
+                                Circle()
+                                    .fill(Color.black.opacity(0.2))
+                                    .blur(radius: 1)
+                            )
+                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
                     })
                     .buttonStyle(PlainButtonStyle())
                     .padding(.trailing, 13)
                     .scaleEffect(hoverPlusButton ? 1.1 : 1.0) // Scale effect
                     .onHover { isHovered in
-                        self.hoverPlusButton = isHovered
+                        withAnimation(.easeInOut(duration: 0.1)){
+                            self.hoverPlusButton = isHovered
+                        }
+                        
                         DispatchQueue.main.async {
                             if (self.hoverPlusButton) {
                                 NSCursor.pointingHand.push()
@@ -100,6 +135,13 @@ struct MenuView: View {
                                 .transition(.move(edge: .trailing).combined(with: .opacity))
                                 
                         }
+                        Text("Plan your work and work your plan.")
+                            .font(.system(size: 10, weight: .ultraLight ,design: .default))
+                            .italic()
+                            .foregroundStyle(.primary)
+                            .padding()
+                            .opacity(0.5)
+                        
                     }
                     
                     Spacer(minLength: 10)
@@ -143,7 +185,6 @@ struct TaskRow: View {
     @State private var tapCount = 0  // Track the number of taps
     @GestureState private var isDetectingLongPress = false
     @FocusState private var isFocused: Bool
-    
 
     
     var body: some View {
@@ -224,7 +265,10 @@ struct TaskRow: View {
                         editText = task.title
                         isEditing = true
                         
+                        
                     })
+                    
+                    .shadow(radius: 0.3)
                     .padding(.horizontal)
                     
                     
@@ -234,6 +278,7 @@ struct TaskRow: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
             .background((task.isHighPriority) ? Color(SettingsViewModel.shared.priorityColor).opacity(0.3) : Color.gray.opacity(0.2))
+            
             .cornerRadius(30)
             
         })
@@ -254,7 +299,9 @@ struct TaskRow: View {
         .padding(.horizontal, 15)
         .scaleEffect(hover ? 1.02 : 1.0)
         .onHover { isHovered in
-            self.hover = isHovered
+            withAnimation(.easeInOut(duration: 0.1)){
+                self.hover = isHovered
+            }
             DispatchQueue.main.async {
                 if (self.hover) {
                     NSCursor.pointingHand.push()
@@ -317,6 +364,7 @@ struct NewTaskRow: View {
         }
     }
 }
+
 
 #Preview {
     MenuView(viewModel: TaskViewModel(), onSettingsTap: {})

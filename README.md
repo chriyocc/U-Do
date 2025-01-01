@@ -10,9 +10,10 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 
 - **Menubar Display:** Tasks are shown directly on the macOS menubar.<br>**菜单栏显示：** 任务直接显示在 macOS 菜单栏上。
 - **Automatic Rotation:** Tasks rotate every 5 seconds (Default) for easy tracking.<br>**自动轮换：** 任务每 5 秒（默认）轮换一次，方便跟踪。<br>[![SPYgO.gif](https://s7.gifyu.com/images/SPYgO.gif)](https://gifyu.com/image/SPYgO)
-- **Settings:** Set your own time interval, priority color, and priority emoji.<br>**设置：** 可以设置自己的时间间隔、优先级颜色和优先级表情符号。<br>[![SPouP.png](https://s13.gifyu.com/images/SPouP.png)](https://gifyu.com/image/SPouP)
+- **Settings:** Set your own time interval, priority color, and priority emoji.<br>**设置：** 可以设置自己的时间间隔、优先级颜色和优先级表情符号。<br>[!
+    [SXLwg.png](https://s13.gifyu.com/images/SXLwg.png)
 - **Task Management:** Add, delete, and set time interval between tasks. Double click on the completed task to delete it.<br>**任务管理：** 添加、删除任务并设置任务之间的时间间隔。双击已完成的任务即可删除。
-- **Task Priority:** Able to select normal or high priority for your task. High-priority tasks will have a emoji in front.<br>**任务优先级：** 可以为任务选择普通或高优先级。高优先级任务会在前方加上表情符号。<br>![SPDWh.png](https://s7.gifyu.com/images/SPDWh.png)
+- **Task Priority:** Able to select normal or high priority for your task. High-priority tasks will have a emoji in front.<br>**任务优先级：** 可以为任务选择普通或高优先级。高优先级任务会在前方加上表情符号。<br>![SXLwW.png](https://s13.gifyu.com/images/SXLwW.png)
 
 ## Requirements 要求
 

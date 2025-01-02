@@ -53,13 +53,7 @@ struct MenuView: View {
                                 .background(
                                     Circle().fill(Color.gray.opacity(0.2))
                                 )
-                                .background(
-                                    // Background blur
-                                    Circle()
-                                        .fill(Color.black.opacity(0.2))
-                                        .blur(radius: 1)
-                                )
-                                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
+                    
                         })
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal, 1)
@@ -93,13 +87,7 @@ struct MenuView: View {
                             .background(
                                 Circle().fill(Color.gray.opacity(0.2))
                             )
-                            .background(
-                                // Background blur
-                                Circle()
-                                    .fill(Color.black.opacity(0.2))
-                                    .blur(radius: 1)
-                            )
-                            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
+                            
                     })
                     .buttonStyle(PlainButtonStyle())
                     .padding(.trailing, 13)

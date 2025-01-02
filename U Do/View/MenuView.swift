@@ -31,13 +31,8 @@ struct MenuView: View {
                                 LinearGradient ( colors: [.primary, .gray], startPoint: .topLeading,
                                                  endPoint: .bottomTrailing)
                                 )
-                        
-                      
-                    
-                        
-                    
-                    
-                    
+                            
+                                            
                     Spacer()
                     
                     HStack {
@@ -53,6 +48,7 @@ struct MenuView: View {
                                 .background(
                                     Circle().fill(Color.gray.opacity(0.2))
                                 )
+                                .help("Settings")
                     
                         })
                         .buttonStyle(PlainButtonStyle())
@@ -87,6 +83,8 @@ struct MenuView: View {
                             .background(
                                 Circle().fill(Color.gray.opacity(0.2))
                             )
+                            .help("Add Task")
+                            
                             
                     })
                     .buttonStyle(PlainButtonStyle())
@@ -106,7 +104,9 @@ struct MenuView: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.top)
+                Spacer()
                 
                 
                 ScrollView {
@@ -131,6 +131,7 @@ struct MenuView: View {
                             .opacity(0.5)
                         
                     }
+                    .padding(.top, 1)
                     
                     Spacer(minLength: 10)
                 }
@@ -173,6 +174,7 @@ struct TaskRow: View {
     @State private var tapCount = 0  // Track the number of taps
     @GestureState private var isDetectingLongPress = false
     @FocusState private var isFocused: Bool
+    @Environment(\.colorScheme) var colorScheme
 
     
     var body: some View {
@@ -241,7 +243,9 @@ struct TaskRow: View {
                             isEditing = false
                         })
                         
-                        CircleButton(icon: "xmark", fontColor: .black, bgColor: Color.white, action: {
+                        CircleButton(icon: "xmark", fontColor: colorScheme == .dark ? Color.primary : Color.white,
+                                     bgColor: .primary.opacity(0.1),
+                                     action: {
                             isEditing = false
                         })
                     }
@@ -266,7 +270,7 @@ struct TaskRow: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
             .background((task.isHighPriority) ? Color(SettingsViewModel.shared.priorityColor).opacity(0.3) : Color.gray.opacity(0.2))
-            
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3), lineWidth: 1))
             .cornerRadius(30)
             
         })
@@ -352,6 +356,8 @@ struct NewTaskRow: View {
         }
     }
 }
+
+
 
 
 #Preview {

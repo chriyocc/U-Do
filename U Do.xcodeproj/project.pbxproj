@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		450B38F62D23A28E009F5DD6 /* IntegratedMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */; };
+		4552748D2D26537B00710E4D /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552748C2D26537B00710E4D /* LanguageManager.swift */; };
+		455274A62D26746700710E4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 455274A82D26746700710E4D /* Localizable.strings */; };
+		455274AD2D26D5E000710E4D /* GradientBorderUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455274AC2D26D5E000710E4D /* GradientBorderUtilities.swift */; };
 		45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72EF32D19BA3600A4DA2D /* U_DoApp.swift */; };
 		45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72EF52D19BA3600A4DA2D /* ContentView.swift */; };
 		45B72EF82D19BA3800A4DA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45B72EF72D19BA3800A4DA2D /* Assets.xcassets */; };
@@ -23,6 +26,10 @@
 
 /* Begin PBXFileReference section */
 		450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegratedMenuView.swift; sourceTree = "<group>"; };
+		4552748C2D26537B00710E4D /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		455274A72D26746700710E4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		455274A92D26746A00710E4D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		455274AC2D26D5E000710E4D /* GradientBorderUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorderUtilities.swift; sourceTree = "<group>"; };
 		45B72EF02D19BA3600A4DA2D /* U Do.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U Do.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B72EF32D19BA3600A4DA2D /* U_DoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U_DoApp.swift; sourceTree = "<group>"; };
 		45B72EF52D19BA3600A4DA2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4552748E2D265A8500710E4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4552748C2D26537B00710E4D /* LanguageManager.swift */,
+				455274A82D26746700710E4D /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		45B72EE72D19BA3600A4DA2D = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +84,7 @@
 		45B72EF22D19BA3600A4DA2D /* U Do */ = {
 			isa = PBXGroup;
 			children = (
+				4552748E2D265A8500710E4D /* Resources */,
 				45B72F0A2D19C50A00A4DA2D /* ViewModels */,
 				45B72F092D19C4F900A4DA2D /* Models */,
 				45B72F022D19BA7700A4DA2D /* View */,
@@ -96,6 +113,7 @@
 				45B72F112D1A767E00A4DA2D /* CircleButton.swift */,
 				45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */,
 				450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */,
+				455274AC2D26D5E000710E4D /* GradientBorderUtilities.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +177,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 45B72EE72D19BA3600A4DA2D;
 			productRefGroup = 45B72EF12D19BA3600A4DA2D /* Products */;
@@ -176,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45B72EFB2D19BA3800A4DA2D /* Preview Assets.xcassets in Resources */,
+				455274A62D26746700710E4D /* Localizable.strings in Resources */,
 				45B72EF82D19BA3800A4DA2D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +209,9 @@
 			files = (
 				45B72F122D1A767E00A4DA2D /* CircleButton.swift in Sources */,
 				45B72F062D19C47400A4DA2D /* Task.swift in Sources */,
+				4552748D2D26537B00710E4D /* LanguageManager.swift in Sources */,
 				45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */,
+				455274AD2D26D5E000710E4D /* GradientBorderUtilities.swift in Sources */,
 				45B72F042D19BA8600A4DA2D /* MenuView.swift in Sources */,
 				45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */,
 				45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */,
@@ -201,6 +223,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		455274A82D26746700710E4D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				455274A72D26746700710E4D /* en */,
+				455274A92D26746A00710E4D /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		45B72EFD2D19BA3800A4DA2D /* Debug */ = {
@@ -341,7 +375,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -369,7 +403,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

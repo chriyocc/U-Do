@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupWindow(with menuView: IntegratedMenuView) {
         let hostingView = NSHostingView(rootView: menuView)
         window = CustomWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
+            contentRect: NSRect(x: 0, y: 0, width: 310, height: 400),
             styleMask: [.fullSizeContentView],
             backing: .buffered,
             defer: false

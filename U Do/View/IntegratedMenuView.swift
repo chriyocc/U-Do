@@ -28,23 +28,28 @@ enum ViewType: Int, CaseIterable {
     }
     
     var inactiveOffset: CGFloat {
-        let basicHeight:Double = 450
+        let basicWidth:Double = 450
         switch self {
-        case .settings: return -450
-        case .menu: return 450
+        case .settings: return basicWidth-900
+        case .menu: return basicWidth
         // Add inactive offsets for future views
         }
     }
 }
 
 struct HomeIndicatorView: View {
+    @Environment(\.colorScheme) var colorScheme
+    var color: Color {
+        return colorScheme == .dark ? .white : .black
+    }
     var currentView: ViewType
     var basicWidth: Int = 150
     var body: some View {
         HStack(spacing: 8) {
             ForEach(ViewType.allCases, id: \.self) { viewType in
                 Circle()
-                    .fill(currentView == viewType ? .white : .white.opacity(0.3))
+                    .fill(currentView == viewType ? color : color.opacity(0.3))
+                
                     .frame(width: 8, height: 8)
                     .animation(.spring(response: 0.3), value: currentView)
             }
@@ -104,23 +109,28 @@ struct IntegratedMenuView: View {
                 // Add future views here following the same pattern
             }
             
+            
             // Navigation arrows
-            HStack {
-                NavigationArrow(
-                    direction: .left,
-                    isHovered: $isLeftHovered,
-                    isEnabled: true,
-                    action: { navigateToView(previousView()) }
-                )
-                .padding(.trailing, 220)
-                
-                NavigationArrow(
-                    direction: .right,
-                    isHovered: $isRightHovered,
-                    isEnabled: true,
-                    action: { navigateToView(nextView()) }
-                )
+            VStack {
+                Spacer()
+                HStack {
+                    NavigationArrow(
+                        direction: .left,
+                        isHovered: $isLeftHovered,
+                        isEnabled: true,
+                        action: { navigateToView(previousView()) }
+                    )
+                    .padding(.trailing, 235)
+                    
+                    NavigationArrow(
+                        direction: .right,
+                        isHovered: $isRightHovered,
+                        isEnabled: true,
+                        action: { navigateToView(nextView()) }
+                    )
+                }
             }
+            
             
             VStack {
                 Spacer()
@@ -128,7 +138,7 @@ struct IntegratedMenuView: View {
                     .padding(.bottom, 10)
             }
         }
-        .frame(width: 300, height: 400)
+        .frame(width: 310, height: 400)
     }
 }
 
@@ -159,14 +169,16 @@ struct NavigationArrow: View {
     var body: some View {
         Rectangle()
             .fill(Color(.white).opacity(0))
-            .frame(width: 70, height: 400)
+            .frame(width: 50, height: 320)
             .overlay {
                 Image(systemName: direction.iconName)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .opacity(isHovered ? 0.5 : 0)
                     .animation(.easeInOut(duration: 0.1), value: isHovered)
-                    .padding(direction.padding, 30)
+                    .padding(direction.padding, 20)
+                    
             }
+            .offset(y: -30)
             .onHover { hovering in
                 isHovered = hovering && isEnabled
             }

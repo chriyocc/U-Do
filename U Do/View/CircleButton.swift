@@ -12,6 +12,7 @@ struct CircleButton: View {
     let fontColor: Color
     let bgColor: Color
     let action: () -> Void
+    
     @State private var hover: Bool = false
     
     var body: some View {
@@ -21,9 +22,12 @@ struct CircleButton: View {
                 .frame(width: 30, height: 30)
                 .background(Circle().fill(bgColor))
                 .foregroundColor(fontColor)
+            
         }
         .buttonStyle(PlainButtonStyle())
-        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 5, y: 5)
+        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
+        
+        
         
 
     }

@@ -21,20 +21,51 @@ struct SettingsView: View {
     @State private var isPressed: Bool = false
     @State private var hover: Bool = false
     @Namespace private var animationNamespace
-    
+    @ObservedObject private var languageManager = LanguageManager.shared
+    @State private var isMenuOpen: Bool = false
     
     var onBackTap: () -> Void
     
     
     var body: some View {
         VStack {
+            
             HStack(alignment: .center) {
-                Text("Settings")
-                    .font(.system(size: 40, weight: .bold))
-                    .padding(.leading, 10)
+                LocalizedText(key: "Settings")
+                    .font(.system(size: 39, weight: .bold))
+                    .padding(.leading, 8)
                     
                 
                 Spacer()
+                
+                Button(action:
+                        {NSApplication.shared.terminate(nil) }
+                    
+                , label: {
+                    Image(systemName: "power")
+                        .fontWeight(.bold)
+                        .font(.system(size: 14))
+                        .padding(10)
+                        .foregroundColor(Color("globalColor"))
+                        .background(Circle().fill(Color.gray.opacity(0.2)))
+                        .help("Quit")
+            
+                })
+                .buttonStyle(PlainButtonStyle())
+                .padding(.trailing, 0.1)
+                .onHover { isHovered in
+                    self.hover = isHovered
+                    DispatchQueue.main.async { //<-- Here
+                        if (self.hover) {
+                            NSCursor.pointingHand.push()
+                        } else {
+                            self.hover = false
+                            NSCursor.pop()
+                        }
+                    }
+                }
+                
+                
                 
                 HStack {
                     Button(action: 
@@ -48,21 +79,11 @@ struct SettingsView: View {
                             .background(Circle().fill(Color.gray.opacity(0.2)))
                     })
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.horizontal, 1)
-                    .onHover { isHovered in
-                        self.hover = isHovered
-                        DispatchQueue.main.async { //<-- Here
-                            if (self.hover) {
-                                NSCursor.pointingHand.push()
-                            } else {
-                                self.hover = false
-                                NSCursor.pop()
-                            }
-                        }
-                    }
+                    .padding(.horizontal, 0.5)
+                    .cursorOnHover()
                 }
                 
-                .padding(.trailing, 13)
+                .padding(.trailing, 10)
 
             }
             .padding(.bottom, 5)
@@ -76,7 +97,7 @@ struct SettingsView: View {
                     
                     HStack(alignment: .bottom) {
                         
-                        Text("Time Interval:")
+                        LocalizedText(key:"Time Interval:")
                             .font(.system(size: 15, weight: .light))
                             .padding(.leading, 10)
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
@@ -111,17 +132,7 @@ struct SettingsView: View {
                         isEditing = editing
                         isPressed = true
                     }
-                    .onHover { isHovered in
-                        self.hover = isHovered
-                        DispatchQueue.main.async { //<-- Here
-                            if (self.hover) {
-                                NSCursor.pointingHand.push()
-                            } else {
-                                self.hover = false
-                                NSCursor.pop()
-                            }
-                        }
-                    }
+                    .cursorOnHover()
                     
                     .padding(.bottom, 10)
                 }
@@ -132,7 +143,7 @@ struct SettingsView: View {
                     
                     HStack(alignment: .bottom) {
                         
-                        Text("Choose Priority Color:")
+                        LocalizedText(key:"Choose Priority Color:")
                             .font(.system(size: 15, weight: .light))
                             .padding(.leading, 10)
                             .foregroundColor(.primary)
@@ -169,17 +180,7 @@ struct SettingsView: View {
                                         lineWidth: 3)
                                     .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
                             )
-                            .onHover { isHovered in
-                                self.hover = isHovered
-                                DispatchQueue.main.async { //<-- Here
-                                    if (self.hover) {
-                                        NSCursor.pointingHand.push()
-                                    } else {
-                                        self.hover = false
-                                        NSCursor.pop()
-                                    }
-                                }
-                            }
+                            .cursorOnHover()
                             .animation(.easeInOut(duration: 0.3), value: viewModel.priorityColor)
                             
                             
@@ -190,7 +191,7 @@ struct SettingsView: View {
                     
                     HStack(alignment: .bottom) {
                         
-                        Text("Choose Priority Emoji:")
+                        LocalizedText(key:"Choose Priority Emoji:")
                             .font(.system(size: 15, weight: .light))
                             .padding(.leading, 10)
                             .foregroundColor(.primary)
@@ -241,50 +242,82 @@ struct SettingsView: View {
                                 }
                                 Spacer()
                         }
-                        
+                        HStack {
+                            LocalizedText(key:"Language:")
+                                .font(.system(size: 15, weight: .light))
+                                .padding(.leading, 10)
+                                .foregroundColor(.primary)
+                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                            
+                            
+                            Spacer()
+ 
+                        }
+                        // Language Selector
+                        Menu {
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        languageManager.selectedLanguage = "en"
+                                    }
+                                }) {
+                                    Text("English")
+                                }
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        languageManager.selectedLanguage = "zh-Hans"
+                                    }
+                                }) {
+                                    Text("中文")
+                                }
+                            } label: {
+                                HStack {
+                                    Text(languageManager.selectedLanguage == "en" ? "English" : "中文")
+                                        .font(.system(size: 14, weight: .medium))
+                                        .transition(.opacity) // Fade animation for text change
+                                    Image(systemName: "chevron.down")
+                                        .font(.system(size: 12))
+                                        .rotationEffect(.degrees(isMenuOpen ? 180 : 0)) // Rotate the chevron
+                                        .animation(.easeInOut(duration: 0.3), value: isMenuOpen)
+                                }
+                                .padding(8)
+                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.1)))
+                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3), lineWidth: 1))
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    isMenuOpen.toggle() // Toggle the menu state
+                                }
+                            }
+                    
+                    
+            
                     }
 
                 }
-                
-                HStack (alignment: .bottom) {
-                    Spacer()
-                    Button(action: { 
-                        
-                        NSApplication.shared.terminate(nil) }, label: {
-                        Image(systemName: "power")
-                            .fontWeight(.bold)
-                            .font(.system(size: 16))
-                            .padding(10)
-                            .foregroundColor(Color("globalColor"))
-                            .background(Circle().fill(Color.gray.opacity(0.2)))
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.top, 20)
-                    .padding(.trailing, 10)
-                    .onHover { isHovered in
-                        self.hover = isHovered
-                        DispatchQueue.main.async { //<-- Here
-                            if (self.hover) {
-                                NSCursor.pointingHand.push()
-                            } else {
-                                self.hover = false
-                                NSCursor.pop()
-                            }
-                        }
-                    }
-                }
-                
-                
-                    
-                
-                
+
                 
                 
                
             }
         }
+        .id(languageManager.viewRefreshTrigger)
         .scrollIndicators(.never)
         .padding()
+    }
+}
+
+extension View {
+    func cursorOnHover() -> some View {
+        self.onHover { isHovered in
+            DispatchQueue.main.async {
+                if isHovered {
+                    NSCursor.pointingHand.push()
+                } else {
+                    NSCursor.pop()
+                }
+            }
+        }
     }
 }
 

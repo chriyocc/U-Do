@@ -20,16 +20,18 @@ struct CircleButton: View {
             Image(systemName: icon)
                 .font(.system(size: 14))
                 .frame(width: 30, height: 30)
-                .background(Circle().fill(bgColor))
+                .background(
+                    Circle()
+                        .fill(bgColor)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        )
+                )
                 .foregroundColor(fontColor)
-            
         }
         .buttonStyle(PlainButtonStyle())
         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 0)
-        
-        
-        
-
     }
 }
 

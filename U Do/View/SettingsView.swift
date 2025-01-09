@@ -280,8 +280,9 @@ struct SettingsView: View {
                                         .animation(.easeInOut(duration: 0.3), value: isMenuOpen)
                                 }
                                 .padding(8)
-                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.1)))
-                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.3), lineWidth: 1))
+                                .frame(width: 100)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color.gray.opacity(0.1)))
+                                .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color.gray.opacity(0.3), lineWidth: 1))
                             }
                             .buttonStyle(PlainButtonStyle())
                             .onTapGesture {

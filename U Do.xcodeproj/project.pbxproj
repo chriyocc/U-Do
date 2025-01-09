@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		450B38F62D23A28E009F5DD6 /* IntegratedMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */; };
+		451C16032D27B2A800AF0757 /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C16022D27B2A800AF0757 /* DropViewDelegate.swift */; };
 		4552748D2D26537B00710E4D /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552748C2D26537B00710E4D /* LanguageManager.swift */; };
 		455274A62D26746700710E4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 455274A82D26746700710E4D /* Localizable.strings */; };
 		455274AD2D26D5E000710E4D /* GradientBorderUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455274AC2D26D5E000710E4D /* GradientBorderUtilities.swift */; };
@@ -20,12 +21,14 @@
 		45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F072D19C49100A4DA2D /* TaskViewModel.swift */; };
 		45B72F102D1A764100A4DA2D /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F0F2D1A764100A4DA2D /* WindowManager.swift */; };
 		45B72F122D1A767E00A4DA2D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B72F112D1A767E00A4DA2D /* CircleButton.swift */; };
+		45BFEA6B2D2F63C800AE5E27 /* TaskDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BFEA6A2D2F63C800AE5E27 /* TaskDropDelegate.swift */; };
 		45D6EA9F2D1AB72500FA7568 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */; };
 		45D6EAA12D1ACABD00FA7568 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegratedMenuView.swift; sourceTree = "<group>"; };
+		451C16022D27B2A800AF0757 /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
 		4552748C2D26537B00710E4D /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		455274A72D26746700710E4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		455274A92D26746A00710E4D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		45B72F072D19C49100A4DA2D /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		45B72F0F2D1A764100A4DA2D /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		45B72F112D1A767E00A4DA2D /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		45BFEA6A2D2F63C800AE5E27 /* TaskDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDropDelegate.swift; sourceTree = "<group>"; };
 		45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +118,8 @@
 				45D6EA9E2D1AB72500FA7568 /* SettingsView.swift */,
 				450B38F52D23A28E009F5DD6 /* IntegratedMenuView.swift */,
 				455274AC2D26D5E000710E4D /* GradientBorderUtilities.swift */,
+				451C16022D27B2A800AF0757 /* DropViewDelegate.swift */,
+				45BFEA6A2D2F63C800AE5E27 /* TaskDropDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,12 +217,14 @@
 				45B72F062D19C47400A4DA2D /* Task.swift in Sources */,
 				4552748D2D26537B00710E4D /* LanguageManager.swift in Sources */,
 				45B72EF62D19BA3600A4DA2D /* ContentView.swift in Sources */,
+				45BFEA6B2D2F63C800AE5E27 /* TaskDropDelegate.swift in Sources */,
 				455274AD2D26D5E000710E4D /* GradientBorderUtilities.swift in Sources */,
 				45B72F042D19BA8600A4DA2D /* MenuView.swift in Sources */,
 				45B72F082D19C49100A4DA2D /* TaskViewModel.swift in Sources */,
 				45B72EF42D19BA3600A4DA2D /* U_DoApp.swift in Sources */,
 				450B38F62D23A28E009F5DD6 /* IntegratedMenuView.swift in Sources */,
 				45D6EA9F2D1AB72500FA7568 /* SettingsView.swift in Sources */,
+				451C16032D27B2A800AF0757 /* DropViewDelegate.swift in Sources */,
 				45B72F102D1A764100A4DA2D /* WindowManager.swift in Sources */,
 				45D6EAA12D1ACABD00FA7568 /* SettingsViewModel.swift in Sources */,
 			);
@@ -375,7 +383,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -403,7 +411,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.U-Do";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

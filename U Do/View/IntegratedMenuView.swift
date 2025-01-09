@@ -110,7 +110,7 @@ struct IntegratedMenuView: View {
             }
             
             
-            // Navigation arrows
+//             Navigation arrows
             VStack {
                 Spacer()
                 HStack {

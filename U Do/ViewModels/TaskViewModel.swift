@@ -55,6 +55,8 @@ class TaskViewModel: ObservableObject {
         objectWillChange.send()
     }
     
+    
+    
     func saveTasks() {
         if let encoded = try? JSONEncoder().encode(tasks) {
             UserDefaults.standard.set(encoded, forKey: tasksKey)
@@ -104,6 +106,22 @@ class TaskViewModel: ObservableObject {
     func togglePriority(_ task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isHighPriority.toggle()
+        }
+    }
+    
+    // Add this to your TaskViewModel
+    func moveTask(from source: IndexSet, to destination: Int) {
+        var adjustedDestination = destination
+        // Adjust destination index if moving down
+        if source.first! < destination {
+            adjustedDestination += 0
+        }
+        
+        // Use immediate animation for better responsiveness
+        withAnimation(.easeInOut(duration: 0.2)) {
+            tasks.move(fromOffsets: source, toOffset: adjustedDestination)
+            saveTasks()
+            objectWillChange.send()
         }
     }
     

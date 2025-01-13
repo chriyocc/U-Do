@@ -88,6 +88,7 @@
 		45B72EF22D19BA3600A4DA2D /* U Do */ = {
 			isa = PBXGroup;
 			children = (
+				45B835CB2D34E8ED00BCE280 /* Assets */,
 				4552748E2D265A8500710E4D /* Resources */,
 				45B72F0A2D19C50A00A4DA2D /* ViewModels */,
 				45B72F092D19C4F900A4DA2D /* Models */,
@@ -139,6 +140,13 @@
 				45D6EAA02D1ACABD00FA7568 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		45B835CB2D34E8ED00BCE280 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

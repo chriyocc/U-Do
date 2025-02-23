@@ -13,6 +13,7 @@ U Do 是一款 macOS 菜单栏应用，能够从待办事项列表中轮换任�
 - **Settings:** Set your own time interval, priority color, and priority emoji.<br>**设置：** 可以设置自己的时间间隔、优先级颜色和优先级表情符号。<br><img src="Assets/SettingsView.png" />
 - **Task Management:** Add, delete, and set time interval between tasks. Double click on the completed task to delete it. Drag task to reorder.<br>**任务管理：** 添加、删除任务并设置任务之间的时间间隔。双击已完成的任务即可删除。拖动任务来排序。
 - **Task Priority:** Able to select normal or high priority for your task. High-priority tasks will have a emoji in front.<br>**任务优先级：** 可以为任务选择普通或高优先级。高优先级任务会在前方加上表情符号。<br><img src="Assets/MainView.png" />
+- **Optional Visible Task:** Able to choose the task that you dont want to show.<br><img src="https://s3.gifyu.com/images/bSRW7.png" alt="Edit" border="0">
 
 ## Requirements 要求
 

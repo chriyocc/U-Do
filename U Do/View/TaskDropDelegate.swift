@@ -24,19 +24,25 @@ struct TaskDropDelegate: DropDelegate {
             guard
                 let droppedId = id as? String,
                 let sourceIndex = taskViewModel.tasks.firstIndex(where: { $0.id.uuidString == droppedId }),
-                let destinationIndex = taskViewModel.tasks.firstIndex(where: { $0.id == task.id }),
-                sourceIndex != destinationIndex
+                let destinationIndex = taskViewModel.tasks.firstIndex(where: { $0.id == task.id })
             else { return }
             
-            // Check drag direction and adjust threshold
-            let isDraggingDown = destinationIndex > sourceIndex
-            let distance = abs(destinationIndex - sourceIndex)
+            // Don't process if source and destination are the same
+            if sourceIndex == destinationIndex { return }
             
-            if !isDraggingDown || distance > 1 { // Allow quicker swaps for downward drags
-                DispatchQueue.main.async {
-                    withAnimation {
-                        taskViewModel.moveTask(from: IndexSet(integer: sourceIndex), to: destinationIndex)
-                    }
+            DispatchQueue.main.async {
+                let adjustedDestination: Int
+                
+                // If moving down, insert after the destination
+                if sourceIndex < destinationIndex {
+                    adjustedDestination = destinationIndex + 1
+                } else {
+                    // If moving up, insert at the destination
+                    adjustedDestination = destinationIndex
+                }
+                
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    taskViewModel.moveTask(from: IndexSet(integer: sourceIndex), to: adjustedDestination)
                 }
             }
         }

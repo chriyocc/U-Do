@@ -94,12 +94,13 @@ class TaskViewModel: ObservableObject {
         }
     }
     
-    func addTaskFromInline() {
+    func addTaskFromInline(isVisible: Bool = false) {
         if !newTaskText.isEmpty {
-            addTask(title: newTaskText)
+            let newTask = Task(title: newTaskText, isVisibleInMenubar: isVisible)
+            tasks.insert(newTask, at: 0)
             newTaskText = ""
             isAddingNewTask = false
-            
+            saveTasks()
         }
     }
     
@@ -123,6 +124,17 @@ class TaskViewModel: ObservableObject {
             saveTasks()
             objectWillChange.send()
         }
+    }
+    
+    func toggleTaskVisibility(_ task: Task) {
+            if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+                tasks[index].isVisibleInMenubar.toggle()
+                saveTasks()
+            }
+        }
+        
+    func getVisibleTasks() -> [Task] {
+        return tasks.filter { $0.isVisibleInMenubar }
     }
     
 

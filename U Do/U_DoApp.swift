@@ -54,12 +54,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTasksUpdated),
+            name: NSNotification.Name("UpdateMenu"),
+            object: nil
+        )
+        
+        
+        
         window.hidesOnDeactivate = false
             
         // Add these window behavior flags
         window.collectionBehavior = [.transient, .ignoresCycle]
         
     }
+    
+    @objc private func handleTasksUpdated() {
+            // Reset index when tasks are updated
+            currentTaskIndex = 0
+            rotateTask()
+        }
     
     func setupWindow(with menuView: IntegratedMenuView) {
         let hostingView = NSHostingView(rootView: menuView)
@@ -110,6 +125,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let interval = SettingsViewModel.shared.timeSecond
         
+        // Initial rotation when starting
+        rotateTask()
+        
         timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: true) { [weak self] _ in
             guard let self = self else { return }
             self.rotateTask()
@@ -121,29 +139,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     public func rotateTask() {
+        // Get only visible tasks
+        let visibleTasks = taskViewModel.tasks.filter { $0.isVisibleInMenubar }
+        
+        guard !visibleTasks.isEmpty else {
+            statusItem?.button?.title = "📄"
 
-        guard !taskViewModel.tasks.isEmpty else {
-            statusItem?.button?.title = "No Tasks"
             return
         }
         
-        // Function to rotate tasks and call itself after the specified time interval
-        
-        // Rotate through tasks
-        currentTaskIndex = (currentTaskIndex + 1) % taskViewModel.tasks.count
-        let task = taskViewModel.tasks[currentTaskIndex]
-        var priority: Bool
-        priority = task.isHighPriority
-        print(priority)
-    
-        // Update the status item with the task title
-        
-        if priority {
-            self.statusItem?.button?.title = "\(SettingsViewModel.shared.priorityEmoji) \(task.title)"
-        } else {
-            self.statusItem?.button?.title = task.title
+        // Ensure currentTaskIndex is within bounds of visible tasks
+        if currentTaskIndex >= visibleTasks.count {
+            currentTaskIndex = 0
         }
-
+        
+        // Get the current visible task
+        let task = visibleTasks[currentTaskIndex]
+        
+        // Update the status item with the task title
+        if task.isHighPriority {
+            statusItem?.button?.title = "\(SettingsViewModel.shared.priorityEmoji) \(task.title)"
+        } else {
+            statusItem?.button?.title = task.title
+        }
+        
+        // Increment the index for next rotation
+        currentTaskIndex = (currentTaskIndex + 1) % visibleTasks.count
     }
 
     

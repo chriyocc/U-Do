@@ -187,6 +187,7 @@ struct TaskRow: View {
     @GestureState private var isDetectingLongPress = false
     @FocusState private var isFocused: Bool
     @State private var isFading = false // State for fade effect
+    @State private var isVisible: Bool = false  // State for visibility
     
     var body: some View {
         HStack {
@@ -214,13 +215,14 @@ struct TaskRow: View {
                 Spacer()
                 
                 HStack(spacing: 10) {
-                    CircleButton(icon: "checkmark", fontColor: .white, bgColor: Color.green, action: {
+                    EyeCircleButton(iconShow: "eye.fill", iconHide: "eye.slash.fill", size: 10, fontColor: .primary, bgColor: .primary.opacity(0.1), task: task, viewModel: viewModel, isVisible: $isVisible)
+                    CircleButton(icon: "checkmark", size: 14, fontColor: .white, bgColor: Color.green, action: {
                         viewModel.editTask(task, newTitle: editText)
                         viewModel.saveTasks()
                         isEditing = false
                     })
                     
-                    CircleButton(icon: "xmark", fontColor: .primary, bgColor: .primary.opacity(0.1), action: {
+                    CircleButton(icon: "xmark", size: 14, fontColor: .primary, bgColor: .primary.opacity(0.1), action: {
                         isEditing = false
                     })
                 }
@@ -233,12 +235,15 @@ struct TaskRow: View {
                 
                 Spacer()
                 
-                CircleButton(icon: "pencil", fontColor: .primary, bgColor: Color.gray.opacity(0.2), action: {
+                EyeState(iconShow: "eye.fill", iconHide: "eye.slash.fill", size: 10, fontColor: .primary, task: task, viewModel: viewModel, isVisible: $isVisible)
+                    .padding(.trailing, 4)
+               
+                CircleButton(icon: "pencil", size: 14, fontColor: .primary, bgColor: Color.gray.opacity(0.2), action: {
                     editText = task.title
                     isEditing = true
                 })
                 .shadow(radius: 0.3)
-                .padding(.horizontal)
+                .padding(.trailing)
             }
         }
         .frame(maxWidth: .infinity)
@@ -325,6 +330,7 @@ struct TaskRow: View {
 struct NewTaskRow: View {
     @ObservedObject var viewModel: TaskViewModel
     @FocusState private var isFocused: Bool
+    @State private var isVisible: Bool = false  // State for visibility
     
     var body: some View {
         HStack {
@@ -343,13 +349,13 @@ struct NewTaskRow: View {
             Spacer()
             
             HStack(spacing: 10) {
-                
-                CircleButton(icon: "checkmark", fontColor: .white, bgColor: Color.green, action: {
+                EyeCircleButton(iconShow: "eye.fill", iconHide: "eye.slash.fill", size: 10, fontColor: .primary, bgColor: .primary.opacity(0.1), task: nil, viewModel: viewModel, isVisible: $isVisible)
+                CircleButton(icon: "checkmark", size: 14, fontColor: .white, bgColor: Color.green, action: {
                     viewModel.saveTasks()
-                    viewModel.addTaskFromInline()
+                    viewModel.addTaskFromInline(isVisible: isVisible)
                 })
                 
-                CircleButton(icon: "xmark", fontColor: .white, bgColor: Color.gray.opacity(0.2), action: {
+                CircleButton(icon: "xmark", size: 14, fontColor: .white, bgColor: Color.gray.opacity(0.2), action: {
                     viewModel.isAddingNewTask = false
                     viewModel.newTaskText = ""
                 })
